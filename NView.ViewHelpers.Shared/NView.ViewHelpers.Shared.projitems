@@ -6,7 +6,7 @@
     <SharedGUID>{A9492C8F-9086-4EFC-AFA4-FD6CD05C22A9}</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>NView.ViewHelpers.Shared</Import_RootNamespace>
+    <Import_RootNamespace>NView</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)DisposeAction.cs" />
