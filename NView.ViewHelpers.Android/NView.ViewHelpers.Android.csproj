@@ -53,5 +53,6 @@
   <ItemGroup>
     <AndroidResource Include="Resources\values\Strings.xml" />
   </ItemGroup>
+  <Import Project="..\NView.ViewHelpers.Shared\NView.ViewHelpers.Shared.projitems" Label="Shared" Condition="Exists('..\NView.ViewHelpers.Shared\NView.ViewHelpers.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
 </Project>
