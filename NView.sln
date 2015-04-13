@@ -1,14 +1,22 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
+# Visual Studio 2012
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NView", "NView\NView.csproj", "{8EF41715-5E0A-40C6-92C7-EED8E50BB1E5}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{71000FC6-9812-4819-AC2C-0FB58F70003B}"
 	ProjectSection(SolutionItems) = preProject
-		NView.Plugin.nuspec = NView.Plugin.nuspec
+		NView.nuspec = NView.nuspec
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NView.ViewHelpers.Mac", "NView.ViewHelpers.Mac\NView.ViewHelpers.Mac.csproj", "{BA84133A-063C-4DFC-BE2B-6A0DB8206253}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "NView.ViewHelpers.Shared", "NView.ViewHelpers.Shared\NView.ViewHelpers.Shared.shproj", "{A9492C8F-9086-4EFC-AFA4-FD6CD05C22A9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NView.ViewHelpers.iOS", "NView.ViewHelpers.iOS\NView.ViewHelpers.iOS.csproj", "{2B085BFE-284D-42CC-8B93-751C9C251A06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NView.ViewHelpers.Android", "NView.ViewHelpers.Android\NView.ViewHelpers.Android.csproj", "{8A7E6C1C-BDAC-409A-A794-6742E062BA69}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -16,13 +24,24 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B085BFE-284D-42CC-8B93-751C9C251A06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B085BFE-284D-42CC-8B93-751C9C251A06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B085BFE-284D-42CC-8B93-751C9C251A06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B085BFE-284D-42CC-8B93-751C9C251A06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A7E6C1C-BDAC-409A-A794-6742E062BA69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A7E6C1C-BDAC-409A-A794-6742E062BA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A7E6C1C-BDAC-409A-A794-6742E062BA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A7E6C1C-BDAC-409A-A794-6742E062BA69}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8EF41715-5E0A-40C6-92C7-EED8E50BB1E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8EF41715-5E0A-40C6-92C7-EED8E50BB1E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EF41715-5E0A-40C6-92C7-EED8E50BB1E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EF41715-5E0A-40C6-92C7-EED8E50BB1E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA84133A-063C-4DFC-BE2B-6A0DB8206253}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA84133A-063C-4DFC-BE2B-6A0DB8206253}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA84133A-063C-4DFC-BE2B-6A0DB8206253}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA84133A-063C-4DFC-BE2B-6A0DB8206253}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
+	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0
@@ -43,5 +62,8 @@ Global
 		$0.StandardHeader = $4
 		$4.Text = 
 		$4.IncludeInNewFiles = True
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
