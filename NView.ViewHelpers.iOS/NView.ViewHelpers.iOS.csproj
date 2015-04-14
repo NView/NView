@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>NView</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>NView.ViewHelpers.iOS</AssemblyName>
+    <AssemblyName>NView.ViewHelpers</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -28,7 +28,7 @@
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
     <DebugSymbols>true</DebugSymbols>
-    <DocumentationFile>bin\Release\NView.ViewHelpers.iOS.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\NView.ViewHelpers.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

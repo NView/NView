@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>NView</RootNamespace>
     <MonoMacResourcePrefix>Resources</MonoMacResourcePrefix>
-    <AssemblyName>NView.ViewHelpers.Mac</AssemblyName>
+    <AssemblyName>NView.ViewHelpers</AssemblyName>
     <TargetFrameworkIdentifier>Xamarin.Mac</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
   </PropertyGroup>
@@ -40,7 +40,7 @@
     <CreatePackage>false</CreatePackage>
     <EnableCodeSigning>false</EnableCodeSigning>
     <EnablePackageSigning>false</EnablePackageSigning>
-    <DocumentationFile>bin\Release\NView.ViewHelpers.Mac.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\NView.ViewHelpers.xml</DocumentationFile>
     <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <ItemGroup>
