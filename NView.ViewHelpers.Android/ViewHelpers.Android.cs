@@ -2,11 +2,47 @@
 
 using Android.Views;
 using Android.App;
+using Android.Content;
 
 namespace NView
 {
 	public static partial class ViewHelpers
 	{
+
+		/// <summary>
+		/// Bind extension to use resource Id to find and bind native view from Activity
+		/// </summary>
+		/// <returns>The to IDispoasble bound View.</returns>
+		/// <param name="activity">Activity that contains the android view.</param>
+		/// <param name="view">View to bind to.</param>
+		/// <param name="resourceId">Resource identifier of android view.</param>
+		/// <typeparam name="T">Type of native android view.</typeparam>
+		public static IDisposable BindToNative<T>(this Activity activity, IView view, int resourceId) where T : View
+		{
+			var nativeView = activity.FindViewById<T> (resourceId);
+			if (nativeView == null) {
+				throw new InvalidOperationException ("Cannot find a view for " + resourceId);
+			}
+			return view.BindToNative (nativeView);
+		}
+
+		/// <summary>
+		/// Bind extension to use resource Id to find and bind native view from ViewGroup or Fragment
+		/// </summary>
+		/// <returns>The to IDispoasble bound View.</returns>
+		/// <param name="androidView"> View that contains android view</param>
+		/// <param name="view">View to bind to.</param>
+		/// <param name="resourceId">Resource identifier of android view.</param>
+		/// <typeparam name="T">Type of native android view.</typeparam>
+		public static IDisposable BindToNative<T>(this View androidView, IView view, int resourceId) where T : View
+		{
+			var nativeView = androidView.FindViewById<T> (resourceId);
+			if (nativeView == null) {
+				throw new InvalidOperationException ("Cannot find a view for " + resourceId);
+			}
+			return view.BindToNative (nativeView);
+		}
+
 		/// <summary>
 		/// Gets or converts the view to the specified type.
 		/// </summary>

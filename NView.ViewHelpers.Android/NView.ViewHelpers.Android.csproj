@@ -55,4 +55,10 @@
   </ItemGroup>
   <Import Project="..\NView.ViewHelpers.Shared\NView.ViewHelpers.Shared.projitems" Label="Shared" Condition="Exists('..\NView.ViewHelpers.Shared\NView.ViewHelpers.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\NView\NView.csproj">
+      <Project>{8EF41715-5E0A-40C6-92C7-EED8E50BB1E5}</Project>
+      <Name>NView</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
