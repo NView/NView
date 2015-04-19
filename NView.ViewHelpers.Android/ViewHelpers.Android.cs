@@ -6,6 +6,9 @@ using Android.Content;
 
 namespace NView
 {
+	/// <summary>
+	/// Methods to assist binding IViews to native views.
+	/// </summary>
 	public static partial class ViewHelpers
 	{
 

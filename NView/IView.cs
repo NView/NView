@@ -8,7 +8,7 @@ namespace NView
 	public interface IView
 	{
 		/// <summary>
-		/// Binds the IView to a native view.
+		/// Binds the <see cref="IView"/> to a native view.
 		/// </summary>
 		/// <returns>A disposable view</returns>
 		/// <param name="nativeView">Native view to bind with.</param>

@@ -3,7 +3,7 @@ using System;
 namespace NView
 {
 	/// <summary>
-	/// Various overrides to the default behavior of IView.BindToNative.
+	/// Various overrides to the default behavior of <see cref="IView.BindToNative"/>.
 	/// </summary>
 	[Flags]
 	public enum BindOptions
