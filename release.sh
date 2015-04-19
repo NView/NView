@@ -31,4 +31,11 @@ nuget pack $APP.nuspec
 nuget push $APP.$VER.nupkg
 
 
-echo Please commit any changes then tag this release with \"git tag -a v$VER\"
+echo Committing changes and tagging this release
+
+git commit -am "Release $VER"
+git tag -a v$VER -m "Release $VER"
+git push --follow-tags
+
+
+
