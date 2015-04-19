@@ -1,9 +1,11 @@
+#!/bin/bash
+set -e
 
 #
-# This script will build a release version of the library,
+# This script will build a release binary,
 # package it,
-# then push it to nuget.
-# You should then commit and tag any changes.
+# push it to nuget,
+# then tags the release in git and pushes it to origin.
 #
 
 APP=NView
