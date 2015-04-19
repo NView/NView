@@ -125,7 +125,7 @@ namespace NView
 			if (vg == null)
 				throw new InvalidOperationException ("Cannot convert " + nativeView + " to " + type + " and cannot add subviews.");
 
-			var newView = CreateView (type);
+			var newView = CreateView (type, nativeView.Context);
 			vg.AddView (newView);
 
 			//
@@ -140,11 +140,15 @@ namespace NView
 		/// </summary>
 		/// <returns>The view.</returns>
 		/// <param name="type">Native view type.</param>
-		public static View CreateView (Type type)
+		/// <param name="context">Android context in which to run the newly created view.</param>
+		public static View CreateView (Type type, Context context)
 		{
 			if (type == null)
 				throw new ArgumentNullException ("type");
-			return (View)Activator.CreateInstance (type);
+			if (context == null)
+				throw new ArgumentNullException ("context");
+			var args = new object[] { context };
+			return (View)Activator.CreateInstance (type, args, null);
 		}
 	}
 }
