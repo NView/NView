@@ -12,12 +12,13 @@ namespace NView
 		/// </summary>
 		/// <returns>A disposable view</returns>
 		/// <param name="nativeView">Native view to bind with.</param>
-		IDisposable BindToNative (object nativeView);
+		/// <param name="options">Overrides to the default behavior of BindToNative.</param>
+		IDisposable BindToNative (object nativeView, BindOptions options = BindOptions.None);
 
 		/// <summary>
-		/// Gets the type of the preferred native control.
+		/// Gets the type of the preferred native view.
 		/// </summary>
-		/// <value>The type of the preferred native.</value>
+		/// <value>The System.Type of the preferred native view.</value>
 		Type PreferredNativeType { get; }
 	}
 }
