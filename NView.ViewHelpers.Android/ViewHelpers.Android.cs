@@ -11,7 +11,6 @@ namespace NView
 	/// </summary>
 	public static partial class ViewHelpers
 	{
-
 		/// <summary>
 		/// Bind extension to use resource Id to find and bind native view from Activity
 		/// </summary>
@@ -19,14 +18,15 @@ namespace NView
 		/// <param name="activity">Activity that contains the android view.</param>
 		/// <param name="view">View to bind to.</param>
 		/// <param name="resourceId">Resource identifier of android view.</param>
+		/// <param name="options">Overrides to the default behavior of BindToNative.</param>
 		/// <typeparam name="T">Type of native android view.</typeparam>
-		public static IDisposable BindToNative<T>(this Activity activity, IView view, int resourceId) where T : View
+		public static void BindToNative<T>(this Activity activity, IView view, int resourceId, BindOptions options = BindOptions.None) where T : View
 		{
 			var nativeView = activity.FindViewById<T> (resourceId);
 			if (nativeView == null) {
-				throw new InvalidOperationException ("Cannot find a view for " + resourceId);
+				throw new InvalidOperationException ("Cannot find view for resource " + resourceId);
 			}
-			return view.BindToNative (nativeView);
+			view.BindToNative (nativeView, options);
 		}
 
 		/// <summary>
@@ -36,14 +36,15 @@ namespace NView
 		/// <param name="androidView"> View that contains android view</param>
 		/// <param name="view">View to bind to.</param>
 		/// <param name="resourceId">Resource identifier of android view.</param>
+		/// <param name="options">Overrides to the default behavior of BindToNative.</param>
 		/// <typeparam name="T">Type of native android view.</typeparam>
-		public static IDisposable BindToNative<T>(this View androidView, IView view, int resourceId) where T : View
+		public static void BindToNative<T>(this View androidView, IView view, int resourceId, BindOptions options = BindOptions.None) where T : View
 		{
 			var nativeView = androidView.FindViewById<T> (resourceId);
 			if (nativeView == null) {
-				throw new InvalidOperationException ("Cannot find a view for " + resourceId);
+				throw new InvalidOperationException ("Cannot find view for resource " + resourceId);
 			}
-			return view.BindToNative (nativeView);
+			view.BindToNative (nativeView, options);
 		}
 
 		/// <summary>
