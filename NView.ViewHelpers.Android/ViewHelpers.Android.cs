@@ -150,6 +150,23 @@ namespace NView
 			var args = new object[] { context };
 			return (View)Activator.CreateInstance (type, args, null);
 		}
+
+		/// <summary>
+		/// Creates the preferred native view and binds the given <see cref="IView"/> to it.
+		/// </summary>
+		/// <returns>The bound native view.</returns>
+		/// <param name="view">View.</param>
+		/// <param name="context">Android context in which to run the newly created view.</param>
+		/// <param name="options">Overrides to the default behavior of BindToNative.</param>
+		public static View CreateBoundNativeView (this IView view, Context context, BindOptions options = BindOptions.None)
+		{
+			if (view == null)
+				throw new ArgumentNullException ("view");
+			var type = view.PreferredNativeType;
+			var nativeView = CreateView (type, context);
+			view.BindToNative (nativeView, options);
+			return nativeView;
+		}
 	}
 }
 

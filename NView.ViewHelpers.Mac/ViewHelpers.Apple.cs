@@ -125,6 +125,22 @@ namespace NView
 				throw new ArgumentNullException ("type");
 			return (NativeView)Activator.CreateInstance (type);
 		}
+
+		/// <summary>
+		/// Creates the preferred native view and binds the given <see cref="IView"/> to it.
+		/// </summary>
+		/// <returns>The bound native view.</returns>
+		/// <param name="view">View.</param>
+		/// <param name="options">Overrides to the default behavior of BindToNative.</param>
+		public static NativeView CreateBoundNativeView (this IView view, BindOptions options = BindOptions.None)
+		{
+			if (view == null)
+				throw new ArgumentNullException ("view");
+			var type = view.PreferredNativeType;
+			var nativeView = CreateView (type);
+			view.BindToNative (nativeView, options);
+			return nativeView;
+		}
 	}
 }
 
