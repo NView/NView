@@ -16,16 +16,13 @@ if test -z "$1"; then
 	exit 1
 fi
 
-echo Updating $APP files to 
+echo Updating $APP files to $VER
 
 sed -e "/<version>.*<\/version>/s//<version>$VER<\/version>/" -i ".previous" $APP.nuspec
 
+echo Make sure you have built a Release version of $APP $VER. Press Enter when you are sure.
 
-echo Building $APP version $VER
-
-xbuild /t:Clean /property:Configuration=Release $APP.sln
-xbuild /t:Build /property:Configuration=Release $APP.sln
-
+read
 
 echo Publishing $APP version $VER
 

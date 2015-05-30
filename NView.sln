@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NView.ViewHelpers.Mac", "NView.ViewHelpers.Mac\NView.ViewHelpers.Mac.csproj", "{BA84133A-063C-4DFC-BE2B-6A0DB8206253}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "NView.ViewHelpers.Shared", "NView.ViewHelpers.Shared\NView.ViewHelpers.Shared.shproj", "{A9492C8F-9086-4EFC-AFA4-FD6CD05C22A9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NView.ViewHelpers.iOS", "NView.ViewHelpers.iOS\NView.ViewHelpers.iOS.csproj", "{2B085BFE-284D-42CC-8B93-751C9C251A06}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NView.ViewHelpers.Android", "NView.ViewHelpers.Android\NView.ViewHelpers.Android.csproj", "{8A7E6C1C-BDAC-409A-A794-6742E062BA69}"

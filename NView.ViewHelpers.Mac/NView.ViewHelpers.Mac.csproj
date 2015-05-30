@@ -55,7 +55,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewHelpers.Apple.cs" />
   </ItemGroup>
-  <Import Project="..\NView.ViewHelpers.Shared\NView.ViewHelpers.Shared.projitems" Label="Shared" Condition="Exists('..\NView.ViewHelpers.Shared\NView.ViewHelpers.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Mac\Xamarin.Mac.CSharp.targets" />
   <ItemGroup>
     <ProjectReference Include="..\NView\NView.csproj">
