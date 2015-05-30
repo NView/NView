@@ -74,7 +74,7 @@ namespace NView
 		/// <returns>The bound native view controller.</returns>
 		/// <param name="view">View.</param>
 		/// <param name="options">Overrides to the default behavior of BindToNative.</param>
-		public static NativeViewController CreateBoundNativeViewController (IView view, BindOptions options = BindOptions.None)
+		public static NativeViewController CreateBoundNativeViewController (this IView view, BindOptions options = BindOptions.None)
 		{
 			var n = view.CreateBoundNative ();
 
