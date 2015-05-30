@@ -27,107 +27,29 @@ namespace NView
 		/// <typeparam name="T">The native view type.</typeparam>
 		public static T GetView<T> (object nativeObject) where T : NativeView
 		{
-			return (T)GetViewOfType (nativeObject, typeof(T));
+			var v = nativeObject as T;
+			if (v == null)
+				throw new InvalidOperationException ("Cannot get " + typeof(T) + " from " + nativeObject);
+			return v;
 		}
 
 		/// <summary>
-		/// Given a UI object, find the first view and make it into the native type.
+		/// Creates a native view with the given cross-platform <see cref="IView"/> bound to it.
 		/// </summary>
-		/// <returns>The view with the specified type.</returns>
-		/// <param name="nativeObject">Native object.</param>
-		/// <param name="type">Native view type.</param>
-		public static NativeView GetViewOfType (object nativeObject, Type type)
+		/// <returns>The bound native view.</returns>
+		/// <param name="view">View.</param>
+		/// <param name="options">Overrides to the default behavior of BindToNative.</param>
+		public static object CreateBoundNative (this IView view, BindOptions options = BindOptions.None)
 		{
-			var v = FindView (nativeObject);
-
-			if (v == null) {
-				throw new InvalidOperationException ("Cannot find a view for " + nativeObject);
-			}
-
-			return MakeViewIntoType (v, type);
+			if (view == null)
+				throw new ArgumentNullException ("view");
+			var nativeView = view.CreateNative ();
+			view.BindToNative (nativeView, options);
+			return nativeView;
 		}
 
 		/// <summary>
-		/// Looks for a view given a UI object.
-		/// </summary>
-		/// <returns>The view.</returns>
-		/// <param name="nativeObject">Native object.</param>
-		public static NativeView FindView (object nativeObject)
-		{
-			if (nativeObject == null)
-				return null;
-			
-			var v = nativeObject as NativeView;
-			if (v != null)
-				return v;
-
-			var vc = nativeObject as NativeViewController;
-			if (vc != null)
-				return vc.View;
-
-			return null;
-		}
-
-		/// <summary>
-		/// Returns a view of the specified type by either simply
-		/// casting the given view, or by adding a new subview.
-		/// </summary>
-		/// <returns>The native view with the given type.</returns>
-		/// <param name="nativeView">Native view.</param>
-		/// <param name="type">Type.</param>
-		public static NativeView MakeViewIntoType (NativeView nativeView, Type type)
-		{
-			if (nativeView == null)
-				throw new ArgumentNullException ();
-
-			//
-			// Is it already the right view?
-			//
-			var srcType = nativeView.GetType ();
-			if (type.IsAssignableFrom (srcType))
-				return nativeView;
-
-			//
-			// Nope, gotta make our own
-			//
-			var newView = CreateView (type);
-			newView.TranslatesAutoresizingMaskIntoConstraints = false;
-			nativeView.AddSubview (newView);
-
-			//
-			// Force the new view to completely cover the old view
-			//
-			Func<NSLayoutAttribute, NSLayoutConstraint> constrain = attr =>
-				NSLayoutConstraint.Create (
-					nativeView, attr,
-					NSLayoutRelation.Equal,
-					newView, attr,
-					1, 0);
-			
-			nativeView.AddConstraints (new[] {
-				constrain (NSLayoutAttribute.Leading),
-				constrain (NSLayoutAttribute.Trailing),
-				constrain (NSLayoutAttribute.Top),
-				constrain (NSLayoutAttribute.Bottom)
-			});
-
-			return newView;
-		}
-
-		/// <summary>
-		/// Creates a view given its native type.
-		/// </summary>
-		/// <returns>The view.</returns>
-		/// <param name="type">Native view type.</param>
-		public static NativeView CreateView (Type type)
-		{
-			if (type == null)
-				throw new ArgumentNullException ("type");
-			return (NativeView)Activator.CreateInstance (type);
-		}
-
-		/// <summary>
-		/// Creates the preferred native view and binds the given <see cref="IView"/> to it.
+		/// Creates a native view with the given cross-platform <see cref="IView"/> bound to it.
 		/// </summary>
 		/// <returns>The bound native view.</returns>
 		/// <param name="view">View.</param>
@@ -136,10 +58,40 @@ namespace NView
 		{
 			if (view == null)
 				throw new ArgumentNullException ("view");
-			var type = view.PreferredNativeType;
-			var nativeView = CreateView (type);
-			view.BindToNative (nativeView, options);
-			return nativeView;
+			var native = view.CreateNative ();
+			var nativeView = native as NativeView;
+			if (nativeView != null)
+				return nativeView;
+			var nativeVC = native as NativeViewController;
+			if (nativeVC != null)
+				return nativeVC.View;
+			throw new InvalidOperationException ("Cannot convert " + native + " to a native view.");
+		}
+
+		/// <summary>
+		/// Creates a native view controller with the given cross-platform <see cref="IView"/> bound to it.
+		/// </summary>
+		/// <returns>The bound native view controller.</returns>
+		/// <param name="view">View.</param>
+		/// <param name="options">Overrides to the default behavior of BindToNative.</param>
+		public static NativeViewController CreateBoundNativeViewController (IView view, BindOptions options = BindOptions.None)
+		{
+			var n = view.CreateBoundNative ();
+
+			// Is it already a VC?
+			var vc = n as NativeViewController;
+			if (vc != null)
+				return vc;
+			
+			// Nope, make it one
+			var v = n as NativeView;
+			if (v != null) {
+				vc = new NativeViewController ();
+				vc.View = v;
+				return vc;
+			}
+
+			throw new InvalidOperationException ("Cannot bind " + view + " to a view controller");
 		}
 	}
 }
