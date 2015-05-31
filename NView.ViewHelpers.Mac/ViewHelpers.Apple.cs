@@ -58,10 +58,11 @@ namespace NView
 		{
 			if (view == null)
 				throw new ArgumentNullException ("view");
-			var native = view.CreateNative ();
+			var native = view.CreateBoundNative (options);
 			var nativeView = native as NativeView;
-			if (nativeView != null)
+			if (nativeView != null) {
 				return nativeView;
+			}
 			var nativeVC = native as NativeViewController;
 			if (nativeVC != null)
 				return nativeVC.View;
@@ -76,7 +77,7 @@ namespace NView
 		/// <param name="options">Overrides to the default behavior of BindToNative.</param>
 		public static NativeViewController CreateBoundNativeViewController (this IView view, BindOptions options = BindOptions.None)
 		{
-			var n = view.CreateBoundNative ();
+			var n = view.CreateBoundNative (options);
 
 			// Is it already a VC?
 			var vc = n as NativeViewController;
