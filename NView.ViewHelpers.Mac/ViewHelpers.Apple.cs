@@ -28,9 +28,37 @@ namespace NView
 		public static T GetView<T> (object nativeObject) where T : NativeView
 		{
 			var v = nativeObject as T;
-			if (v == null)
-				throw new InvalidOperationException ("Cannot get " + typeof(T) + " from " + nativeObject);
-			return v;
+			if (v != null)
+				return v;
+			var vc = nativeObject as NativeViewController;
+			if (vc != null) {
+				v = vc.View as T;
+				if (v != null)
+					return v;
+			}
+			throw new InvalidOperationException ("Cannot get " + typeof(T) + " from " + nativeObject);
+		}
+
+		/// <summary>
+		/// Gets or converts the view to a view controller.
+		/// </summary>
+		/// <returns>The view controller.</returns>
+		/// <param name="nativeObject">Native object.</param>
+		public static NativeViewController GetViewController (object nativeObject)
+		{
+			// Is it already a VC?
+			var vc = nativeObject as NativeViewController;
+			if (vc != null)
+				return vc;
+
+			// Nope, make it one
+			var v = nativeObject as NativeView;
+			if (v != null) {
+				vc = new NativeViewController ();
+				vc.View = v;
+				return vc;
+			}
+			throw new InvalidOperationException ("Cannot get " + typeof(NativeViewController) + " from " + nativeObject);
 		}
 
 		/// <summary>
@@ -77,22 +105,17 @@ namespace NView
 		/// <param name="options">Overrides to the default behavior of BindToNative.</param>
 		public static NativeViewController CreateBoundNativeViewController (this IView view, BindOptions options = BindOptions.None)
 		{
-			var n = view.CreateBoundNative (options);
+			return GetViewController (view.CreateBoundNative (options));
+		}
 
-			// Is it already a VC?
-			var vc = n as NativeViewController;
-			if (vc != null)
-				return vc;
-			
-			// Nope, make it one
-			var v = n as NativeView;
-			if (v != null) {
-				vc = new NativeViewController ();
-				vc.View = v;
-				return vc;
-			}
-
-			throw new InvalidOperationException ("Cannot bind " + view + " to a view controller");
+		/// <summary>
+		/// Creates a native view controller for the given cross-platform <see cref="IView"/>.
+		/// </summary>
+		/// <returns>The bound native view controller.</returns>
+		/// <param name="view">View.</param>
+		public static NativeViewController CreateNativeViewController (this IView view)
+		{
+			return GetViewController (view.CreateNative ());
 		}
 	}
 }
